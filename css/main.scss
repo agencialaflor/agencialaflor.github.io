@@ -79,6 +79,7 @@ html, body {
                 margin-left: 0;
             }
             a:hover {
+                transition: color 0.2s;
                 color: lighten($custom-red, 20%);
             }
         }
@@ -123,22 +124,23 @@ html, body {
     @extend %section;
     height: 30.066vw;
     overflow: hidden;
-    //background-color: black;
+    background-color: black;
     margin-top: $header-line-height*0.9;
     padding: 0;
     position: relative;
     video {
         width: 100%;
         height: 100%;
-        background-color: black;
+        background: none;
     }
     .video-overlay {
         position: absolute;
         z-index: 1;
-        bottom: 25pt;
+        bottom: 20pt;
         left: $section-margin;
         width: 250pt;
         p {
+            margin: 0;
             font-size: 26pt;
             font-weight: bolder;
             color: white;
@@ -262,6 +264,17 @@ ul.circles {
             opacity: 1;
             transition: opacity 0.5s;
         }
+    }
+}
+
+.brands {
+    width: 100%;
+    overflow: hidden;
+    img {
+        float: left;
+        width: 100pt;
+        height: 100pt;
+        margin-right: 20pt;
     }
 }
 
