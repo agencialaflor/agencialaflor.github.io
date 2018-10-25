@@ -121,9 +121,13 @@ html, body {
 
 .video {
     @extend %section;
+    //background-color: black;
     margin-top: $header-line-height*0.9;
     padding: 0;
     position: relative;
+    video {
+        background-color: black;
+    }
     .video-overlay {
         position: absolute;
         z-index: 1;
