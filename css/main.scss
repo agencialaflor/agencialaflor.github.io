@@ -169,15 +169,43 @@ html, body {
     min-height: 64pt;
 }
 
-
-ul.circles {
-    @extend %plain-list;
+%grid-7 {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(7, 120pt);
-    grid-row-gap: 60pt;
     grid-auto-rows: minmax(120pt, auto);
     justify-content: space-between;
+    @media screen and (max-width: $min-desktop-size) {
+        display: block;
+        text-align: center;
+        > * {
+            margin-left: 30pt;
+            margin-right: 30pt;
+            margin-bottom: 60pt;
+            display: inline-block;
+            height: 170pt;
+            width: 170pt;
+        }
+    }
+    @media screen and (max-width: 840px) and (min-width: $min-desktop-size+1) {
+        grid-template-columns: repeat(4, 105pt);
+        grid-auto-rows: minmax(105pt, auto);
+    }
+    @media screen and (max-width: 1250px) and (min-width: 841px) {
+        grid-template-columns: repeat(4, 120pt);
+        grid-auto-rows: minmax(120pt, auto);
+    }
+    @media screen and (max-width: 1450px) and (min-width: 1251px) {
+        grid-template-columns: repeat(7, 105pt);
+        grid-auto-rows: minmax(105pt, auto);
+    }
+}
+
+
+ul.circles {
+    @extend %plain-list;
+    @extend %grid-7;
+    grid-row-gap: 60pt;
     padding-bottom: 60pt;
     li {
         position: relative;
@@ -207,30 +235,6 @@ ul.circles {
             top: 50%;
             transform: translate(-50%, -50%);
         }
-    }
-    @media screen and (max-width: $min-desktop-size) {
-        display: block;
-        text-align: center;
-        li {
-            margin-left: 30pt;
-            margin-right: 30pt;
-            margin-bottom: 60pt;
-            display: inline-block;
-            height: 170pt;
-            width: 170pt;
-        }
-    }
-    @media screen and (max-width: 840px) and (min-width: $min-desktop-size+1) {
-        grid-template-columns: repeat(4, 105pt);
-        grid-auto-rows: minmax(105pt, auto);
-    }
-    @media screen and (max-width: 1250px) and (min-width: 841px) {
-        grid-template-columns: repeat(4, 120pt);
-        grid-auto-rows: minmax(120pt, auto);
-    }
-    @media screen and (max-width: 1450px) and (min-width: 1251px) {
-        grid-template-columns: repeat(7, 105pt);
-        grid-auto-rows: minmax(105pt, auto);
     }
     li.ooh {
         background-image: url('../image/ooh.jpg')
@@ -268,13 +272,14 @@ ul.circles {
 }
 
 .brands {
-    width: 100%;
-    overflow: hidden;
+    @extend %plain-list;
+    @extend %grid-7;
+    grid-row-gap: 20pt;
     img {
-        float: left;
-        width: 100pt;
-        height: 100pt;
-        margin-right: 20pt;
+        box-sizing: border-box;
+        padding: 10pt;
+        width: 100%;
+        height: 100%;
     }
 }
 
