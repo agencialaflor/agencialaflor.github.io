@@ -1,8 +1,9 @@
-$custom-red: #ce0613;
+$custom-color: #4b7fc6;
 $min-desktop-size: 700px;
 $header-line-height: 38pt;
 $section-margin: 10%;
 $min-page-width: 400px;
+$logo-height: 20pt;
 
 html, body {
     min-width: $min-page-width;
@@ -52,6 +53,10 @@ html, body {
         margin: 0;
         font-size: 18pt;
         line-height: $header-line-height;
+        max-height: $header-line-height;
+        height: $logo-height;
+        position: relative;
+        top: ($header-line-height - $logo-height)/2;
     }
     
     .header-menu-toggle {
@@ -80,7 +85,7 @@ html, body {
             }
             a:hover {
                 transition: color 0.2s;
-                color: lighten($custom-red, 20%);
+                color: lighten($custom-color, 20%);
             }
         }
     }
@@ -225,7 +230,7 @@ ul.services {
     li {
         position: relative;
         border-radius: 50%;
-        background-color: $custom-red;
+        background-color: $custom-color;
         p:nth-child(2) {
             text-align: center;
             display: block;
