@@ -3,7 +3,7 @@ $min-desktop-size: 700px;
 $header-line-height: 38pt;
 $section-margin: 10%;
 $min-page-width: 400px;
-$logo-height: 15pt;
+$logo-height: 14pt;
 
 html, body {
     min-width: $min-page-width;
@@ -36,10 +36,12 @@ html, body {
     padding: 0;
 }
 
-.header {
+header {
     @extend %section;
     margin: 0;
     background-color: black;
+    border: 1px solid $custom-color;
+    //border-color: $custom-color;
     color: white;
     position: fixed;
     top: 0;
@@ -66,15 +68,15 @@ html, body {
         @extend %plain-list;
         float: right;
         text-transform: uppercase;
-        font-size: 9pt;
-        
         li {
             @extend %unselectable;
             float: left;
             color: white;
             line-height: $header-line-height;
-            margin-left: 20pt;
+            margin-left: 60pt;
             a {
+                font-size: 11pt;
+                font-weight: 100;
                 display: block;
                 height: 100%;
                 color: inherit;
@@ -180,19 +182,28 @@ html, body {
 
 .content {
     @extend %section;
+    h1:after {
+        background-color: $custom-color;
+    }
 }
 
-.footer {
+footer {
     @extend %section;
-    background-color: darken(white, 20%);
-    min-height: 320pt;
+    background-color: $custom-color;
+    padding-bottom: 60pt;
+    h1:after {
+        background-color: white;
+    }
+    p {
+        color: white;
+    }
 }
 
-@mixin grid-7($small-size, $big-size, $giant-size, $row-gap-size) {
+@mixin grid-7($small-size, $big-size, $giant-size, $ratio, $row-gap-size) {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(7, $big-size);
-    grid-auto-rows: minmax($big-size, auto);
+    grid-auto-rows: minmax($big-size/$ratio, auto);
     justify-content: space-between;
     grid-row-gap: $row-gap-size;
     @media screen and (max-width: $min-desktop-size) {
@@ -203,21 +214,21 @@ html, body {
             margin-right: 30pt;
             margin-bottom: $row-gap-size;
             display: inline-block;
-            height: $giant-size;
             width: $giant-size;
+            height: $giant-size/$ratio;
         }
     }
-    @media screen and (max-width: 840px) and (min-width: $min-desktop-size+1) {
+    @media screen and (max-width: 890px) and (min-width: $min-desktop-size+1) {
         grid-template-columns: repeat(4, $small-size);
-        grid-auto-rows: minmax($small-size, auto);
+        grid-auto-rows: minmax($small-size/$ratio, auto);
     }
-    @media screen and (max-width: 1250px) and (min-width: 841px) {
+    @media screen and (max-width: 1250px) and (min-width: 891px) {
         grid-template-columns: repeat(4, $big-size);
-        grid-auto-rows: minmax($big-size, auto);
+        grid-auto-rows: minmax($big-size/$ratio, auto);
     }
-    @media screen and (max-width: 1450px) and (min-width: 1251px) {
+    @media screen and (max-width: 1550px) and (min-width: 1251px) {
         grid-template-columns: repeat(7, $small-size);
-        grid-auto-rows: minmax($small-size, auto);
+        grid-auto-rows: minmax($small-size/$ratio, auto);
     }
 }
 
@@ -226,7 +237,8 @@ h1.services {
 }
 ul.services {
     @extend %plain-list;
-    @include grid-7(105pt, 120pt, 170pt, 60pt);
+    @include grid-7(105pt, 130pt, 170pt, 1.0, 60pt);
+    margin-bottom: 36pt;
     li {
         position: relative;
         border-radius: 50%;
@@ -293,7 +305,8 @@ ul.services {
 
 .brands {
     @extend %plain-list;
-    @include grid-7(95pt, 110pt, 150pt, 5pt);
+    @include grid-7(95pt, 110pt, 150pt, 1.5, 5pt);
+    margin-bottom: 36pt;
     img {
         width: 100%;
         height: 100%;
@@ -301,11 +314,60 @@ ul.services {
 }
 
 h1 {
-    padding-top: 95px;
+    font-family: "Arial Black", sans-serif;
+    padding-top: 50pt;
+    padding-bottom: 12pt;
+}
+h1:after {
+    content: "";
+    display: block;
+    width: 37pt;
+    margin-top: 9pt;
+    padding: 1pt 0;
+    background-color: black;
 }
 
 a.anchor:before {
   content:"";
   float: left;
   height: 0px;
+}
+
+
+p.contact {
+    display: inline-block;
+    margin: 0;
+    margin-right: 120pt;
+    font-size: 11pt;
+}
+form.contact {
+    display: inline-block;
+    * {
+        box-sizing: border-box;
+        border-radius: 6pt;
+        display: block;
+        margin-bottom: 12pt;
+        width: 300pt;
+        box-shadow: none;
+        border: none;
+        font-size: 10pt;
+        color: darken($custom-color, 10%);
+        background-color: white;
+    }
+    input[type="text"], input[type="email"] {
+        padding: 4pt 6pt;
+    }
+    input[type="submit"], button {
+        width: 90pt;
+        float: right;
+        margin-top: 9pt;
+        font-size: 16pt;
+        padding: 4pt;
+    }
+    textarea {
+        font-family: inherit;
+        padding: 6pt;
+        min-height: 90pt;
+        resize: none;
+    }
 }
