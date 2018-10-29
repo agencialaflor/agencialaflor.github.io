@@ -379,14 +379,38 @@ ul.services {
     }
 }
 
-.brands {
-    @extend %plain-list;
-    @include grid-7(95pt, 110pt, 130pt, 1.5, 5pt);
-    margin-bottom: 36pt;
+/*
+div.brands {
+    ul.brands {
+        @extend %plain-list;
+        @include grid-7(95pt, 110pt, 130pt, 1.5, 5pt);
+        margin-bottom: 36pt;
+        position: relative;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+*/
+div.brands {
+    height: 100pt;
+    width: 100%;
     position: relative;
-    img {
+    overflow: hidden;
+    ul.brands {
         width: 100%;
-        height: 100%;
+        position: relative;
+        height: 100pt;
+        overflow: hidden;
+        li {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+    img {
+        //height: 100pt;
+        //width: 100pt;
     }
 }
 
