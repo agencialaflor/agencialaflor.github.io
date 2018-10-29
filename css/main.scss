@@ -379,16 +379,47 @@ ul.services {
     }
 }
 
-.brands {
-    @extend %plain-list;
-    @include grid-7(95pt, 110pt, 130pt, 1.5, 5pt);
-    margin-bottom: 36pt;
+div.brands {
+    $brand-item-size: 100pt;
+    $brand-item-margin: 20pt;
+    $brand-item-count: 8;
+    overflow: hidden;
     position: relative;
-    img {
-        width: 100%;
-        height: 100%;
+    margin-bottom: 60pt;
+    height: $brand-item-size+18pt;
+    ul.brands {
+        //@extend %plain-list;
+        //@include grid-7(95pt, 110pt, 130pt, 1.5, 5pt);
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        font-size: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        animation: scroll 25s linear 0s infinite;
+        left: 0;
+        li {
+            margin-right: $brand-item-margin;
+            display: inline-block;
+            width: $brand-item-size;
+            height: $brand-item-size;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    ul.brands:hover {
+        animation-play-state: paused;
+    }
+    
+    @keyframes scroll {
+        100% {
+            transform: translate(-50%, 0);
+        }
     }
 }
+
 
 h1 {
     font-family: "Arial Black", sans-serif;
